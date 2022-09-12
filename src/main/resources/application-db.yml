@@ -1,0 +1,11 @@
+spring.profiles.active: db
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: app-db-user
+    url: jdbc:mysql://${mysql_host:localhost}:3306/stock-price-db
+    password: App@123
+  jpa:
+    hibernate:
+      ddl-auto: update
