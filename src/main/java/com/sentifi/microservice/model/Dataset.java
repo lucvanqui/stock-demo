@@ -1,12 +1,15 @@
 package com.sentifi.microservice.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 import lombok.Data;
 
 @Data
-public class NasdagDataResponse {
+public class Dataset implements Serializable {
+
+  private static final long serialVersionUID = 6933512868865068341L;
 
   private int id;
 
@@ -42,7 +45,7 @@ public class NasdagDataResponse {
 
   private Date end_date;
 
-  private List<List<Date>> data;
+  private List<List<Object>> data;
 
   private String collapse;
 

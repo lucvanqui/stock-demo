@@ -1,5 +1,8 @@
 package com.sentifi.microservice;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,9 +19,14 @@ public class NasdagClientIT {
 
   @Test
   public void testGetStockNasdag() {
-    ResponseEntity<NasdagDataResponse> findStockInfo = nasdagRestClient
+    ResponseEntity<NasdagDataResponse> stockInfo = nasdagRestClient
         .findStockInfo("FB", null);
-    System.out.println(findStockInfo);
+
+    assertNotNull(stockInfo);
+    assertNotNull(stockInfo.getBody());
+    assertNotNull(stockInfo.getBody().getDataset_data());
+    assertEquals("FB", stockInfo.getBody().getDataset_data().getDataset_code());
+
   }
 
 }

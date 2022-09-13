@@ -1,5 +1,7 @@
 package com.sentifi.microservice.client;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -23,23 +25,21 @@ public class NasdagRestClient extends BaseClient {
   }
 
   @Override
-  pub result = String.format(result, string);
-lic String
-
-  buildUri() {
+  public String buildUri() {
     return this.url;
   }
 
   private String buildFullUri(String ticker, SearchParameters params) {
+    Optional<String> param = Optional.empty();
+    if (params != null) {
+      param = Optional.ofNullable(params.toParameterUriFormat());
+    }
     return formatUri(buildUri() + FILTER_STOCK_BY_TIME_SERIES_SUBFIX, ticker,
-        "json") + params.toParameterUriFormat();
+        "json") + param.orElse("");
   }
 
-  private String formatUri(String uri, String... filledData) {
-    String param[] = filledData;
-    String result = new String(uri);
-    for (String string : param) {
-    }
-    return result;
+  private String formatUri(String uri, Object... filledData) {
+    return String.format(uri, filledData);
   }
+
 }
