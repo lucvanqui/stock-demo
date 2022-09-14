@@ -13,7 +13,7 @@ import com.sentifi.microservice.model.SearchParameters;
 @Component
 public class NasdagRestClient extends BaseClient {
 
-  private static final String FILTER_STOCK_BY_TIME_SERIES_SUBFIX = "/WIKI/%s/data.%s";
+  private static final String FILTER_STOCK_BY_TIME_SERIES_SUBFIX = "/WIKI/%s.%s";
 
   @Value("${external.rest.nasdag.url}")
   private String url;

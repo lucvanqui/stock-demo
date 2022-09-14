@@ -11,4 +11,14 @@ public class NasdagDataResponse implements Serializable {
 
   private Dataset dataset_data;
 
+  public ClosePriceData map() {
+    dataset_data.getData().stream().map(data -> date)
+    ClosePriceData.builder()
+    .info(StockInfo.builder().ticker(this.dataset_data.getDataset_code()).build())
+    .prices(null)
+    .build();
+    return null;
+    
+  }
+
 }
