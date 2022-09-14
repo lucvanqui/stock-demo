@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sentifi.microservice.constant.StockConstants;
 import com.sentifi.microservice.model.ClosePriceData;
+import com.sentifi.microservice.model.MovingAvarageResponse;
 import com.sentifi.microservice.service.PriceService;
 
 @RestController
@@ -21,13 +22,21 @@ public class PriceController {
   @Autowired
   private PriceService priceService;
 
+  // Story 1
   @GetMapping("/{ticker}/prices")
   public ClosePriceData findClodePriceByStickerAndTime(
       @PathVariable(name = "ticker", required = true) String ticker,
       @RequestParam(name = "start_date", required = false) @DateTimeFormat(pattern = StockConstants.DATE_FORMAT) Date startDate,
       @RequestParam(name = "end_date", required = false) @DateTimeFormat(pattern = StockConstants.DATE_FORMAT) Date endDate) {
     return priceService.findClosePrice(ticker, startDate, endDate);
+  }
 
+  // Story 2
+  @GetMapping("/{ticker}/200dma")
+  public MovingAvarageResponse find200MovingAvarage(
+      @PathVariable(name = "ticker", required = true) String ticker,
+      @RequestParam(name = "start_date", required = false) @DateTimeFormat(pattern = StockConstants.DATE_FORMAT) Date startDate) {
+    return priceService.findMovingAvarage(200, ticker, startDate);
   }
 
 }

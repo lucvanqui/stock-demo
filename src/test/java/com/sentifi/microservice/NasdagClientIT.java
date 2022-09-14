@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 
-import com.sentifi.microservice.client.NasdagRestClient;
+import com.sentifi.microservice.client.NasdagClient;
 import com.sentifi.microservice.constant.ColumnNameEnum;
 import com.sentifi.microservice.model.NasdagDataResponse;
 import com.sentifi.microservice.model.SearchParameters;
@@ -20,17 +20,16 @@ import com.sentifi.microservice.util.DateUtil;
 public class NasdagClientIT {
 
   @Autowired
-  private NasdagRestClient nasdagRestClient;
+  private NasdagClient nasdagRestClient;
 
   @Test
   public void testGetStockNasdagWithoutTimeFilter() {
     ResponseEntity<NasdagDataResponse> stockInfo = nasdagRestClient
         .findStockInfo("FB", null);
-
     assertNotNull(stockInfo);
     assertNotNull(stockInfo.getBody());
-    assertNotNull(stockInfo.getBody().getDataset_data());
-    assertEquals("FB", stockInfo.getBody().getDataset_data().getDataset_code());
+    assertNotNull(stockInfo.getBody().getDataset());
+    assertEquals("FB", stockInfo.getBody().getDataset().getDatasetCode());
 
   }
 
@@ -46,8 +45,8 @@ public class NasdagClientIT {
 
     assertNotNull(stockInfo);
     assertNotNull(stockInfo.getBody());
-    assertNotNull(stockInfo.getBody().getDataset_data());
-    assertEquals("FB", stockInfo.getBody().getDataset_data().getDataset_code());
+    assertNotNull(stockInfo.getBody().getDataset());
+    assertEquals("FB", stockInfo.getBody().getDataset().getDatasetCode());
 
   }
 

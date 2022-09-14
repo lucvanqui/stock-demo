@@ -20,8 +20,6 @@ public abstract class BaseClient {
   @Autowired
   private RestTemplate restTemplate;
 
-  public abstract String buildUri();
-
   public <T> ResponseEntity<T> exchange(String url, HttpMethod method,
       T resquestBody, Class<T> responseClass) {
     log.info("Request: URL = {} ", url);

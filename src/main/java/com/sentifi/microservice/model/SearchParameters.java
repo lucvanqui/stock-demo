@@ -17,6 +17,10 @@ public class SearchParameters {
 
   private Integer columnIndex;
 
+  private Integer limit;
+
+  private String order;
+
   public String toParameterUriFormat() {
     StringBuilder result = new StringBuilder("?");
     if (startDate != null) {
@@ -27,10 +31,16 @@ public class SearchParameters {
       result.append("end_date=").append(DateUtil.dateToString(endDate))
           .append("&");
     }
-
     if (columnIndex != null) {
       result.append("column_index=").append(columnIndex);
     }
+    if (limit != null) {
+      result.append("limit=").append(limit);
+    }
+    if (order != null) {
+      result.append("order=").append(order);
+    }
+
     return result.toString();
   }
 

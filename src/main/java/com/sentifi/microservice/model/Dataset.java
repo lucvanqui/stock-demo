@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Data;
 
 @Data
@@ -13,21 +15,27 @@ public class Dataset implements Serializable {
 
   private int id;
 
-  private String dataset_code;
+  @JsonProperty("dataset_code")
+  private String datasetCode;
 
-  private String database_code;
+  @JsonProperty("database_code")
+  private String databaseCode;
 
   private String name;
 
   private String description;
 
-  private String refreshed_at;
+  @JsonProperty("refreshed_at")
+  private String refreshedAt;
 
-  private Date newest_available_date;
+  @JsonProperty("newest_available_date")
+  private Date newestAvailableDate;
 
-  private Date oldest_available_date;
+  @JsonProperty("oldest_available_date")
+  private Date oldestAvailableDate;
 
-  private List<String> column_names;
+  @JsonProperty("column_names")
+  private List<String> columnNames;
 
   private String frequency;
 
@@ -39,11 +47,14 @@ public class Dataset implements Serializable {
 
   private String transform;
 
-  private int column_index;
+  @JsonProperty("column_index")
+  private int columnIndex;
 
-  private Date start_date;
+  @JsonProperty("start_date")
+  private Date startDate;
 
-  private Date end_date;
+  @JsonProperty("end_date")
+  private Date endDate;
 
   private List<List<Object>> data;
 
@@ -51,6 +62,7 @@ public class Dataset implements Serializable {
 
   private String order;
 
-  private int database_id;
+  @JsonProperty("database_id")
+  private int databaseId;
 
 }
