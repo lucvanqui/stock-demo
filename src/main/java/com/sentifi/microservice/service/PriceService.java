@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -54,7 +55,7 @@ public class PriceService {
       throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format(
           "No data for %s, possile start date should be %s", startDate, null));
     }
-    Double avg = data.stream().map(a -> a.get(ColumnNameEnum.Close.getIndex()))
+    Double avg = CollectionUtils.emptyIfNull(data).stream().map(a -> a.get(ColumnNameEnum.Close.getIndex()))
         .collect(Collectors
             .summingDouble(price -> Double.valueOf(price.toString())));
     return MovingAvarageResponse.builder()
