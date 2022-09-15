@@ -1,0 +1,2 @@
+- Trust on the nasdag API, assume that if has the response for the ticket, then the data for that ticket should be valid (no need null check, validate the filtered time)
+- 

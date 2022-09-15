@@ -41,9 +41,10 @@ public class PriceService {
       Date startDate) {
     ResponseEntity<NasdagDataResponse> stockInfo = nasdagRestClient
         .findStockInfo(ticker,
-            SearchParameters.builder().startDate(startDate)
-                .columnIndex(ColumnNameEnum.Close.getIndex()).limit(ma)
-                .order("asc").build());
+            SearchParameters.builder()
+             .startDate(startDate)
+             .columnIndex(ColumnNameEnum.Close.getIndex()).limit(ma)
+             .order("asc").build());
     if (!stockInfo.hasBody()) {
       return null;
     }
